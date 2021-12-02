@@ -1,11 +1,11 @@
-const users = [
-  { id: '1', name: 'Max', login: 'trshkv', password: '12345' },
-  { id: '2', name: 'Sanya', login: 'agent007', password: '12345' },
-  { id: '3', name: 'Maryan', login: 'soviet-citizen', password: '12345' },
-  { id: '4', name: 'kate', login: 'soviet-citizen', password: '12345' },
-];
+const { users } = require('../in-memory-db.js');
+
 const getAll = async () => users;
 
 const getUserByID = async (userID) => users.find((user) => user.id === userID);
 
-module.exports = { getAll, getUserByID };
+const create = async (user) => {
+  users.push(user);
+};
+
+module.exports = { getAll, getUserByID, create };
