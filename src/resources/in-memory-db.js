@@ -1,8 +1,18 @@
-const users = [
+const USERS_INIT_ARR = [
   { id: '1', name: 'Max', login: 'trshkv', password: '12345' },
   { id: '2', name: 'Sanya', login: 'agent007', password: '12345' },
   { id: '3', name: 'Maryan', login: 'soviet-citizen', password: '12345' },
-  { id: '4', name: 'kate', login: 'soviet-citizen', password: '12345' },
+];
+const BOARDS_INIT_ARR = [
+  {
+    id: '1',
+    title: 'rs-school',
+    columns: [{ id: '1', title: 'nodejs', order: 3 }],
+  },
 ];
 
-module.exports = { users };
+const users = USERS_INIT_ARR;
+
+const boards = BOARDS_INIT_ARR;
+
+module.exports = { users, boards };
