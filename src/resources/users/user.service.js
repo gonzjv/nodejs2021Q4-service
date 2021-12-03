@@ -9,4 +9,6 @@ const create = (user) => {
   return user;
 };
 
-module.exports = { getAll, getUserByID, create };
+const update = (userId, user) => usersRepo.update(userId, user);
+
+module.exports = { getAll, getUserByID, create, update };

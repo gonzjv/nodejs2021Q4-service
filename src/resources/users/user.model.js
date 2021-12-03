@@ -21,6 +21,11 @@ class User {
   static fromRequest(body) {
     return new User(body);
   }
+
+  static toPut(id, user) {
+    const { name, login, password } = user;
+    return { id, name, login, password };
+  }
 }
 
 module.exports = User;

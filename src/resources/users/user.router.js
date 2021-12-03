@@ -7,14 +7,22 @@ router.route('/').get(async (req, res) => {
   res.status(200).send(users.map(User.toResponse));
 });
 
-router.route('/:user_id').get(async (req, res) => {
-  const user = await usersService.getUserByID(req.params.user_id);
+router.route('/:userId').get(async (req, res) => {
+  const user = await usersService.getUserByID(req.params.userId);
   res.status(200).send(User.toResponse(user));
 });
 
 router.route('/').post(async (req, res) => {
   const user = await usersService.create(User.fromRequest(req.body));
   res.status(201).send(User.toResponse(user));
+});
+
+router.route('/:userId').put(async (req, res) => {
+  const user = await usersService.update(
+    req.params.userId,
+    User.fromRequest(req.body)
+  );
+  res.status(200).send(User.toResponse(user));
 });
 
 module.exports = router;
