@@ -11,4 +11,6 @@ const create = (user) => {
 
 const update = (userId, user) => usersRepo.update(userId, user);
 
-module.exports = { getAll, getUserByID, create, update };
+const kick = (userId) => usersRepo.kick(userId);
+
+module.exports = { getAll, getUserByID, create, update, kick };

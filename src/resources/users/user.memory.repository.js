@@ -6,9 +6,7 @@ const getAll = async () => users;
 const getUserByID = async (userID) => users.find((user) => user.id === userID);
 
 const create = async (user) => {
-  console.log('user for create:', user);
   users.push(user);
-  console.log('users after push:', users);
 };
 
 const update = async (oldId, user) => {
@@ -20,4 +18,12 @@ const update = async (oldId, user) => {
   return getUserByID(oldId);
 };
 
-module.exports = { getAll, getUserByID, create, update };
+const kick = async (userId) => {
+  const userToDelete = await getUserByID(userId);
+  if (userToDelete) {
+    const index = users.indexOf(userToDelete);
+    users.splice(index, 1);
+  }
+};
+
+module.exports = { getAll, getUserByID, create, update, kick };
