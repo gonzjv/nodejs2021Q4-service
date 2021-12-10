@@ -19,11 +19,16 @@
   },
   "settings": {
     "noInlineConfig": true
+    // "import/resolver":{
+    //   "node":{
+    //     "extensions"
+    //   }
+    // }
   },
   "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
   "extends": [
     "eslint:recommended",
-    "plugin:node/recommended",
+    // "plugin:node/recommended",
     "airbnb-base",
     "airbnb-typescript/base",
     "prettier"
