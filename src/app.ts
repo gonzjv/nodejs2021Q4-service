@@ -17,7 +17,7 @@ app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use('/', (req, res, next): IApp => {
   if (req.originalUrl === '/') {
     res.send('Service is running!');
-    return;
+    return undefined;
   }
   next();
 });
