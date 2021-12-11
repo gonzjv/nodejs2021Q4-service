@@ -7,7 +7,7 @@ import * as userService from './user.service';
 // const usersService = require('./user.service');
 const router = Router();
 
-router.route('/').get(async (req, res) => {
+router.route('/').get(async (_req, res) => {
   const users = await userService.getAll();
   res.status(200).send(users.map(User.toResponse));
 });
