@@ -36,4 +36,5 @@ const boards = BOARDS_INIT_ARR;
 
 const tasks = TASKS_INIT_ARR;
 
-module.exports = { users, boards, tasks };
+// module.exports = { users, boards, tasks };
+export { users, boards, tasks };

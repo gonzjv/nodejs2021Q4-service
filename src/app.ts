@@ -4,6 +4,7 @@ import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
 import { PORT } from './common/config';
 import { IApp } from './interfaces/app.interface';
+import { usersRouter } from './resources/users/user.router';
 
 // const userRouter = require('./resources/users/user.router');
 // const boardRouter = require('./resources/boards/board.router');
@@ -20,7 +21,7 @@ app.use('/', (req, res, next): IApp => {
   }
   next();
 });
-// app.use('/users', userRouter);
+app.use('/users', usersRouter);
 // app.use('/boards', boardRouter);
 
 app.listen(PORT, () =>
