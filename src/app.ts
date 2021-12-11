@@ -3,7 +3,7 @@ import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
 import { PORT } from './common/config';
-import { IApp } from './interfaces/app.interface';
+// import { IApp } from './interfaces/app.interface';
 import { usersRouter } from './resources/users/user.router';
 
 // const userRouter = require('./resources/users/user.router');
@@ -14,10 +14,10 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 
 app.use(express.json());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-app.use('/', (req, res, next): IApp => {
+app.use('/', (req, res, next): undefined => {
   if (req.originalUrl === '/') {
     res.send('Service is running!');
-    return undefined;
+    return;
   }
   next();
 });
