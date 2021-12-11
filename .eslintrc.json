@@ -18,17 +18,21 @@
     }
   },
   "settings": {
-    "noInlineConfig": true
-    // "import/resolver":{
-    //   "node":{
-    //     "extensions"
+    "noInlineConfig": true,
+    // "import/resolver": {
+    //   "node": {
+    //     "extensions": [".js", ".ts"]
     //   }
-    // }
+    // },
+    "node": {
+      // "resolvePaths": ["__dirname"],
+      "tryExtensions": [".js", ".ts"]
+    }
   },
   "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
   "extends": [
     "eslint:recommended",
-    // "plugin:node/recommended",
+    "plugin:node/recommended",
     "airbnb-base",
     "airbnb-typescript/base",
     "prettier"
