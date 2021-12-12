@@ -2,9 +2,9 @@ import express from 'express';
 import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
-import { PORT } from './common/config';
 // import { IApp } from './interfaces/app.interface';
 import { usersRouter } from './resources/users/user.router';
+import config from './common/config';
 
 // const userRouter = require('./resources/users/user.router');
 // const boardRouter = require('./resources/boards/board.router');
@@ -24,6 +24,6 @@ app.use('/', (req, res, next): undefined | void => {
 app.use('/users', usersRouter);
 // app.use('/boards', boardRouter);
 
-app.listen(PORT, () =>
-  console.log(`App is running on http://localhost:${PORT}`)
+app.listen(config.PORT, () =>
+  console.log(`App is running on http://localhost:${config.PORT}`)
 );
