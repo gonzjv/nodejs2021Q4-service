@@ -24,6 +24,7 @@ app.use('/', (req, res, next): undefined | void => {
 app.use('/users', usersRouter);
 // app.use('/boards', boardRouter);
 
-app.listen(config.PORT, () =>
-  console.log(`App is running on http://localhost:${config.PORT}`)
-);
+app.listen(config.PORT, () => {
+  console.log(config.PORT);
+  console.log(`App is running on http://localhost:${config.PORT}`);
+});
