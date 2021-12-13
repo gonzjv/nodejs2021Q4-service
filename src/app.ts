@@ -3,7 +3,7 @@ import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
 // import { IApp } from './interfaces/app.interface';
-import { exit, stderr } from 'process';
+import { exit, stderr, stdout } from 'process';
 import { usersRouter } from './resources/users/user.router';
 import { PORT } from './common/config';
 // import handleError from './error-handlers/handle-error';
@@ -36,5 +36,5 @@ try {
 // app.use('/boards', boardRouter);
 
 app.listen(PORT, () => {
-  console.log(`App is running on http://localhost:${PORT}`);
+  stdout.write(`App is running on http://localhost:${PORT}`);
 });

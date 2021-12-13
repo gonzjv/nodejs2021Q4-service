@@ -27,10 +27,10 @@ router.route('/:userId').get(async (req, res) => {
   }
 });
 
-// router.route('/').post(async (req, res) => {
-//   const user = await usersService.create(User.fromRequest(req.body));
-//   res.status(201).send(User.toResponse(user));
-// });
+router.route('/').post(async (req, res) => {
+  const user = await userService.create(User.fromRequest(req.body));
+  res.status(201).send(User.toResponse(user));
+});
 
 // router.route('/:userId').put(async (req, res) => {
 //   const user = await usersService.update(
