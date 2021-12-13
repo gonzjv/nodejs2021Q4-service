@@ -40,10 +40,9 @@ router.route('/:userId').put(async (req, res) => {
   res.status(200).send(User.toResponse(user));
 });
 
-// router.route('/:userId').delete(async (req, res) => {
-//   await usersService.kick(req.params.userId);
-//   res.sendStatus(200);
-// });
+router.route('/:userId').delete(async (req, res) => {
+  await userService.kick(req.params.userId);
+  res.sendStatus(200);
+});
 
-// module.exports = router;
 export { router as usersRouter };
