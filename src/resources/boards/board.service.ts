@@ -1,4 +1,4 @@
-const boardsRepo = require('./board.memory.repository');
+// const boardsRepo = require('./board.memory.repository');
 
 const getAll = () => boardsRepo.getAll();
 
@@ -13,4 +13,4 @@ const update = (id, elem) => boardsRepo.update(id, elem);
 
 const kick = (id) => boardsRepo.kick(id);
 
-module.exports = { getAll, getByID, create, update, kick };
+// module.exports = { getAll, getByID, create, update, kick };

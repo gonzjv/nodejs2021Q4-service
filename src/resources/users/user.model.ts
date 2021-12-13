@@ -1,10 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import {
-  IBodyFromRequest,
-  IUser,
-  IUserToPut,
-  IUserToResponse,
-} from '../../interfaces/user.interface';
+import { IUser } from '../../interfaces/user.interface';
 
 class User implements IUser {
   id: string;
@@ -27,16 +22,16 @@ class User implements IUser {
     this.password = password;
   }
 
-  static toResponse(user: IUserToResponse) {
+  static toResponse(user: IUser) {
     const { id, name, login } = user;
     return { id, name, login };
   }
 
-  static fromRequest(body: IBodyFromRequest) {
+  static fromRequest(body: IUser) {
     return new User(body);
   }
 
-  static toPut(id: string, user: IUserToPut) {
+  static toPut(id: string, user: IUser) {
     const { name, login, password } = user;
     return { id, name, login, password };
   }

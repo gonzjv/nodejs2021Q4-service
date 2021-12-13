@@ -1,15 +1,11 @@
-import {
-  IUser,
-  IUserToPost,
-  IUserToPut,
-} from '../../interfaces/user.interface';
+import { IUser } from '../../interfaces/user.interface';
 import UserError from '../../error-handlers/user-error';
 import { users } from '../in-memory-db';
 import User from './user.model';
 
 const getAll = async () => users;
 
-const getUserByID = async (userID: string): Promise<IUser> => {
+const getUserByID = async (userID: string): Promise<Required<IUser>> => {
   const user = users.find((elem) => elem.id === userID);
   if (!user) {
     throw new UserError('User does not exist');
@@ -17,11 +13,11 @@ const getUserByID = async (userID: string): Promise<IUser> => {
   return user;
 };
 
-const create = async (user: IUserToPost) => {
+const create = async (user: Required<IUser>) => {
   users.push(user);
 };
 
-const update = async (oldId: string, user: IUserToPut) => {
+const update = async (oldId: string, user: IUser) => {
   const oldUser = await getUserByID(oldId);
   if (oldUser) {
     users[users.indexOf(oldUser)] = User.toPut(oldId, user);

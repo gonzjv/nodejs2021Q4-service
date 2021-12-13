@@ -1,8 +1,12 @@
-const router = require('express').Router();
-const boardService = require('./board.service');
-const taskService = require('../tasks/task.service');
-const Board = require('./board.model.js');
-const Task = require('../tasks/task.model.js');
+// const router = require('express').Router();
+// const boardService = require('./board.service');
+// const taskService = require('../tasks/task.service');
+// const Board = require('./board.model.js');
+// const Task = require('../tasks/task.model.js');
+
+import { Router } from 'express';
+
+const router = Router();
 
 router.route('/').get(async (req, res) => {
   const boards = await boardService.getAll();
@@ -57,4 +61,4 @@ router.route('/:boardId/tasks').post(async (req, res) => {
   res.status(201).send(Task.toResponse(task));
 });
 
-module.exports = router;
+// module.exports = router;
