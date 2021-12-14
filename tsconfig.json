@@ -11,6 +11,8 @@
     "rootDir": "./",
     "outDir": "./build",
     "strict": true,
-    "noPropertyAccessFromIndexSignature": true
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   }
 }
