@@ -1,8 +1,7 @@
+import { v4 as uuidv4 } from 'uuid';
 import { IBoard } from '../../interfaces/board.interface';
 
-const { v4: uuidv4 } = require('uuid');
-
-class Board {
+class Board implements IBoard {
   id: string;
 
   title: string;
@@ -24,7 +23,7 @@ class Board {
     return { id, title, columns };
   }
 
-  static fromRequest(body: IBoard) {
+  static fromRequest(body: Required<IBoard>) {
     return new Board(body);
   }
 
@@ -34,4 +33,4 @@ class Board {
   }
 }
 
-module.exports = Board;
+export default Board;

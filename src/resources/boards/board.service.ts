@@ -1,16 +1,17 @@
-// const boardsRepo = require('./board.memory.repository');
+import { IBoard } from '../../interfaces/board.interface';
+import * as boardsRepo from './board.memory.repository';
 
 const getAll = () => boardsRepo.getAll();
 
-const getByID = (id) => boardsRepo.getByID(id);
+const getByID = (id: string) => boardsRepo.getByID(id);
 
-const create = (elem) => {
+const create = (elem: Required<IBoard>) => {
   boardsRepo.create(elem);
   return elem;
 };
 
-const update = (id, elem) => boardsRepo.update(id, elem);
+const update = (id: string, elem: IBoard) => boardsRepo.update(id, elem);
 
-const kick = (id) => boardsRepo.kick(id);
+const kick = (id: string) => boardsRepo.kick(id);
 
-// module.exports = { getAll, getByID, create, update, kick };
+export { getAll, getByID, create, update, kick };

@@ -6,6 +6,7 @@ import swaggerUI from 'swagger-ui-express';
 import { exit, stderr, stdout } from 'process';
 import { usersRouter } from './resources/users/user.router';
 import { PORT } from './common/config';
+import { boardRouter } from './resources/boards/board.router';
 // import handleError from './error-handlers/handle-error';
 // import UserError from './error-handlers/user-error';
 
@@ -27,13 +28,13 @@ app.use('/', (req, res, next): undefined | void => {
 
 try {
   app.use('/users', usersRouter);
+  app.use('/boards', boardRouter);
 } catch (error: unknown) {
   if (error instanceof Error) {
     stderr.write(error.message);
     exit(1);
   }
 }
-// app.use('/boards', boardRouter);
 
 app.listen(PORT, () => {
   stdout.write(`App is running on http://localhost:${PORT}`);
