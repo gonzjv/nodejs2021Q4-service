@@ -2,16 +2,11 @@ import express from 'express';
 import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
-// import { IApp } from './interfaces/app.interface';
 import { exit, stderr, stdout } from 'process';
 import { usersRouter } from './resources/users/user.router';
 import { PORT } from './common/config';
 import { boardRouter } from './resources/boards/board.router';
-// import handleError from './error-handlers/handle-error';
-// import UserError from './error-handlers/user-error';
-
-// const userRouter = require('./resources/users/user.router');
-// const boardRouter = require('./resources/boards/board.router');
+import { taskRouter } from './resources/tasks/task.router';
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -29,6 +24,7 @@ app.use('/', (req, res, next): undefined | void => {
 try {
   app.use('/users', usersRouter);
   app.use('/boards', boardRouter);
+  app.use('/boards', taskRouter);
 } catch (error: unknown) {
   if (error instanceof Error) {
     stderr.write(error.message);

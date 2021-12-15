@@ -1,14 +1,10 @@
-// const router = require('express').Router();
-// const boardService = require('./board.service');
-// const taskService = require('../tasks/task.service');
-// const Board = require('./board.model.js');
-// const Task = require('../tasks/task.model.js');
-
 import { Router } from 'express';
 import handleUserError from '../../error-handlers/handle-user-error';
 import UserError from '../../error-handlers/user-error';
 import Board from './board.model';
 import * as boardService from './board.service';
+// import * as taskService from '../tasks/task.service';
+// import Task from '../tasks/task.model';
 
 const router = Router();
 
@@ -32,12 +28,6 @@ router.route('/:id').get(async (req, res) => {
   if (board) {
     res.status(200).send(Board.toResponse(board));
   }
-  // const board = await boardService.getByID(req.params.id);
-  // if (board) {
-  //   res.status(200).send(Board.toResponse(board));
-  // } else {
-  //   res.status(404);
-  // }
 });
 
 router.route('/').post(async (req, res) => {
@@ -76,7 +66,7 @@ router.route('/:id').delete(async (req, res) => {
 
 // router.route('/:boardId/tasks').post(async (req, res) => {
 //   const task = await taskService.create(
-//     Task.fromRequest(req.body, req.params.boardId)
+//     Task.fromRequest(req.params.boardId, req.body)
 //   );
 //   res.status(201).send(Task.toResponse(task));
 // });
