@@ -1,14 +1,11 @@
-// const { tasks } = require('../in-memory-db.js');
-// const Task = require('./task.model.js');
-
 import ITask from '../../interfaces/task.interface';
 import { tasks } from '../in-memory-db';
 
 const getAll = async (boardId: string) =>
   tasks.filter((task) => task.boardId === boardId);
 
-// const getByID = async (boardId, id) =>
-//   tasks.find((task) => task.boardId === boardId && task.id === id);
+const getByID = async (boardId: string, id: string) =>
+  tasks.find((task) => task.boardId === boardId && task.id === id);
 
 const create = async (task: Required<ITask>) => {
   tasks.push(task);
@@ -31,5 +28,4 @@ const create = async (task: Required<ITask>) => {
 //   }
 // };
 
-// module.exports = { getAll, getByID, create, update, kick };
-export { getAll, create };
+export { getAll, create, getByID };

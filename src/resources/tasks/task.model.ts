@@ -36,8 +36,8 @@ class Task {
   }
 
   static toResponse(task: Required<ITask>) {
-    const { id, title, order, description, userId } = task;
-    return { id, title, order, description, userId };
+    const { id, title, order, description, userId, boardId, columnId } = task;
+    return { id, title, order, description, userId, boardId, columnId };
   }
 
   static fromRequest(boardId: string, body: ITask) {

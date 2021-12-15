@@ -4,7 +4,8 @@ import * as tasksRepo from './task.memory.repository';
 
 const getAll = (boardId: string) => tasksRepo.getAll(boardId);
 
-// const getByID = async (boardId, id) => tasksRepo.getByID(boardId, id);
+const getByID = async (boardId: string, id: string) =>
+  tasksRepo.getByID(boardId, id);
 
 const create = async (elem: Required<ITask>) => {
   tasksRepo.create(elem);
@@ -18,4 +19,4 @@ const create = async (elem: Required<ITask>) => {
 // module.exports = { getAll, getByID, create, update, kick };
 
 // export { getAll, getByID, create, update, kick };
-export { getAll, create };
+export { getAll, create, getByID };

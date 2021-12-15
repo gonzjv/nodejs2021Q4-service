@@ -1,6 +1,3 @@
-// const router = require('express').Router();
-// const tasksService = require('./task.service');
-// const Task = require('./task.model.js');
 import { Router } from 'express';
 import Task from './task.model';
 import * as taskService from './task.service';
@@ -12,14 +9,14 @@ router.route('/:boardId/tasks').get(async (req, res) => {
   res.status(200).send(tasks.map(Task.toResponse));
 });
 
-// router.route('/:id').get(async (req, res) => {
-//   const task = await tasksService.getByID(req.params.id);
-//   if (task) {
-//     res.status(200).send(Task.toResponse(task));
-//   } else {
-//     res.status(404).send('task not found');
-//   }
-// });
+router.route('/:boardId/tasks/:taskId').get(async (req, res) => {
+  const task = await taskService.getByID(req.params.boardId, req.params.taskId);
+  if (task) {
+    res.status(200).send(Task.toResponse(task));
+  } else {
+    res.status(404).send('task not found');
+  }
+});
 
 router.route('/:boardId/tasks').post(async (req, res) => {
   const task = await taskService.create(
@@ -41,5 +38,4 @@ router.route('/:boardId/tasks').post(async (req, res) => {
 //   res.sendStatus(200);
 // });
 
-// module.exports = router;
 export { router as taskRouter };
