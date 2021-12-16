@@ -1,4 +1,3 @@
-// const tasksRepo = require('./task.memory.repository');
 import ITask from '../../interfaces/task.interface';
 import * as tasksRepo from './task.memory.repository';
 
@@ -15,9 +14,6 @@ const create = async (elem: Required<ITask>) => {
 const update = (id: string, boardId: string, elem: ITask) =>
   tasksRepo.update(id, boardId, elem);
 
-// const kick = (id) => tasksRepo.kick(id);
+const kick = (id: string, boardId: string) => tasksRepo.kick(id, boardId);
 
-// module.exports = { getAll, getByID, create, update, kick };
-
-// export { getAll, getByID, create, update, kick };
-export { getAll, create, getByID, update };
+export { getAll, create, getByID, update, kick };

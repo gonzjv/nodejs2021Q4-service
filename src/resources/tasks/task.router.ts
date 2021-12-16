@@ -36,9 +36,9 @@ router.route('/:boardId/tasks/:taskId').put(async (req, res) => {
   }
 });
 
-// router.route('/:id').delete(async (req, res) => {
-//   await tasksService.kick(req.params.id);
-//   res.sendStatus(200);
-// });
+router.route('/:boardId/tasks/:taskId').delete(async (req, res) => {
+  await taskService.kick(req.params.taskId, req.params.boardId);
+  res.sendStatus(200);
+});
 
 export { router as taskRouter };

@@ -21,12 +21,12 @@ const update = async (oldId: string, boardId: string, task: ITask) => {
   return getByID(boardId, oldId);
 };
 
-// const kick = async (id) => {
-//   const elemToDelete = await getByID(id);
-//   if (elemToDelete) {
-//     const index = tasks.indexOf(elemToDelete);
-//     tasks.splice(index, 1);
-//   }
-// };
+const kick = async (id: string, boardId: string) => {
+  const elemToDelete = await getByID(boardId, id);
+  if (elemToDelete) {
+    const index = tasks.indexOf(elemToDelete);
+    tasks.splice(index, 1);
+  }
+};
 
-export { getAll, create, getByID, update };
+export { getAll, create, getByID, update, kick };
