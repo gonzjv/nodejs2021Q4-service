@@ -1,5 +1,6 @@
 import ITask from '../../interfaces/task.interface';
 import { tasks } from '../in-memory-db';
+import Task from './task.model';
 
 const getAll = async (boardId: string) =>
   tasks.filter((task) => task.boardId === boardId);
@@ -11,14 +12,14 @@ const create = async (task: Required<ITask>) => {
   tasks.push(task);
 };
 
-// const update = async (oldId, task) => {
-//   const oldTask = await getByID(oldId);
-//   if (oldTask) {
-//     tasks[tasks.indexOf(oldTask)] = Task.toPut(oldId, task);
-//   }
+const update = async (oldId: string, boardId: string, task: ITask) => {
+  const oldTask = await getByID(boardId, oldId);
+  if (oldTask) {
+    tasks[tasks.indexOf(oldTask)] = Task.toPut(oldId, task);
+  }
 
-//   return getByID(oldId);
-// };
+  return getByID(boardId, oldId);
+};
 
 // const kick = async (id) => {
 //   const elemToDelete = await getByID(id);
@@ -28,4 +29,4 @@ const create = async (task: Required<ITask>) => {
 //   }
 // };
 
-export { getAll, create, getByID };
+export { getAll, create, getByID, update };

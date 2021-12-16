@@ -25,13 +25,16 @@ router.route('/:boardId/tasks').post(async (req, res) => {
   res.status(201).send(Task.toResponse(task));
 });
 
-// router.route('/:id').put(async (req, res) => {
-//   const task = await tasksService.update(
-//     req.params.id,
-//     Task.fromRequest(req.body)
-//   );
-//   res.status(200).send(Task.toResponse(task));
-// });
+router.route('/:boardId/tasks/:taskId').put(async (req, res) => {
+  const task = await taskService.update(
+    req.params.taskId,
+    req.params.boardId,
+    Task.fromRequest(req.params.boardId, req.body)
+  );
+  if (task) {
+    res.status(200).send(Task.toResponse(task));
+  }
+});
 
 // router.route('/:id').delete(async (req, res) => {
 //   await tasksService.kick(req.params.id);

@@ -12,11 +12,12 @@ const create = async (elem: Required<ITask>) => {
   return elem;
 };
 
-// const update = (id, elem) => tasksRepo.update(id, elem);
+const update = (id: string, boardId: string, elem: ITask) =>
+  tasksRepo.update(id, boardId, elem);
 
 // const kick = (id) => tasksRepo.kick(id);
 
 // module.exports = { getAll, getByID, create, update, kick };
 
 // export { getAll, getByID, create, update, kick };
-export { getAll, create, getByID };
+export { getAll, create, getByID, update };

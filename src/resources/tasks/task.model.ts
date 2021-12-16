@@ -46,10 +46,10 @@ class Task {
     return task;
   }
 
-  // static toPut(id, task) {
-  //   const { title, order, description, userId, boardId, columnId } = task;
-  //   return { id, title, order, description, userId, boardId, columnId };
-  // }
+  static toPut(id: string, task: ITask) {
+    const { title, order, description, userId, boardId, columnId } = task;
+    return { id, title, order, description, userId, boardId, columnId };
+  }
 }
 
 // module.exports = Task;
