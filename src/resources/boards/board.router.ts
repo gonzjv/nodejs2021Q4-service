@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import handleUserError from '../../error-handlers/handle-user-error';
-import UserError from '../../error-handlers/user-error';
+// import handleUserError from '../../error-handlers/handle-user-error';
+// import UserError from '../../error-handlers/user-error';
 import Board from './board.model';
 import * as boardService from './board.service';
 // import * as taskService from '../tasks/task.service';
@@ -14,19 +14,11 @@ router.route('/').get(async (_req, res) => {
 });
 
 router.route('/:id').get(async (req, res) => {
-  let board;
-  try {
-    board = await boardService.getByID(req.params.id);
-  } catch (error: unknown) {
-    if (error instanceof UserError) {
-      res.status(404).send('Board not found');
-      handleUserError(error);
-    } else {
-      throw error;
-    }
-  }
+  const board = await boardService.getByID(req.params.id);
   if (board) {
     res.status(200).send(Board.toResponse(board));
+  } else {
+    res.status(404).send('Board not found');
   }
 });
 
