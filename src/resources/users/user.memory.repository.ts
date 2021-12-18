@@ -1,7 +1,8 @@
 import { IUser } from '../../interfaces/user.interface';
 import UserError from '../../error-handlers/user-error';
-import { users } from '../in-memory-db';
+import { tasks, users } from '../in-memory-db';
 import User from './user.model';
+import * as taskService from '../tasks/task.service';
 
 const getAll = async () => users;
 
@@ -31,6 +32,13 @@ const kick = async (userId: string) => {
   if (userToDelete) {
     const index = users.indexOf(userToDelete);
     users.splice(index, 1);
+    tasks.map(async (task) => {
+      if (task.userId === userToDelete.id) {
+        const unAssignedTask = task;
+        unAssignedTask.userId = null;
+        await taskService.update(task.id, task.boardId, unAssignedTask);
+      }
+    });
   }
 };
 

@@ -1,5 +1,5 @@
 import { IBoard } from '../interfaces/board.interface';
-import ITask from '../interfaces/task.interface';
+import { ITask } from '../interfaces/task.interface';
 
 const USERS_INIT_ARR = [
   { id: '1', name: 'Max', login: 'trshkv', password: '12345' },

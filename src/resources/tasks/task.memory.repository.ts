@@ -1,4 +1,4 @@
-import ITask from '../../interfaces/task.interface';
+import { ITask } from '../../interfaces/task.interface';
 import { tasks } from '../in-memory-db';
 import Task from './task.model';
 

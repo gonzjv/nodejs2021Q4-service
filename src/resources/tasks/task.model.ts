@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import ITask from '../../interfaces/task.interface';
+import { ITask, ITaskFromRequest } from '../../interfaces/task.interface';
 // const { v4: uuidv4 } = require('uuid');
 
 class Task {
@@ -11,7 +11,7 @@ class Task {
 
   description: string;
 
-  userId: string;
+  userId: string | null;
 
   boardId: string;
 
@@ -40,7 +40,7 @@ class Task {
     return { id, title, order, description, userId, boardId, columnId };
   }
 
-  static fromRequest(boardId: string, body: ITask) {
+  static fromRequest(boardId: string, body: ITaskFromRequest) {
     const task = new Task(body);
     task.boardId = boardId;
     return task;

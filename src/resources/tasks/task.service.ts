@@ -1,4 +1,4 @@
-import ITask from '../../interfaces/task.interface';
+import { ITask } from '../../interfaces/task.interface';
 import * as tasksRepo from './task.memory.repository';
 
 const getAll = (boardId: string) => tasksRepo.getAll(boardId);
