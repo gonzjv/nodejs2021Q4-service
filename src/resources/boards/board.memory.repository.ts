@@ -32,7 +32,6 @@ const kick = async (id: string) => {
       }
       return null;
     });
-    console.log('tasks after:', tasks);
   }
 };
 
