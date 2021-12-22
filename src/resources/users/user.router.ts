@@ -1,13 +1,23 @@
 import { Router } from 'express';
+import pino from 'pino';
 import handleUserError from '../../error-handlers/handle-user-error';
 import UserError from '../../error-handlers/user-error';
 import User from './user.model';
 import * as userService from './user.service';
 
+const logger = pino({
+  transport: {
+    target: 'pino-pretty',
+  },
+});
 const router = Router();
 
-router.route('/').get(async (_req, res) => {
+router.route('/').get(async (req, res) => {
   const users = await userService.getAll();
+  // req.log.info(`url: ${req.url}`);
+  logger.info(
+    `Hi there!!! URL is: ${req.originalUrl};\n Query params is not present;\n Body: ${req.body}`
+  );
   res.status(200).send(users.map(User.toResponse));
 });
 
