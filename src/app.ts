@@ -10,14 +10,16 @@ import { boardRouter } from './resources/boards/board.router';
 import { taskRouter } from './resources/tasks/task.router';
 
 const app = express();
-const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
+const swaggerDocument = YAML.load(
+  path.join(__dirname, '../doc/api.yaml')
+);
 
 app.use(express.json());
 app.use(pino());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use('/', (req, res, next): undefined | void => {
   req.log.info(
-    `URL: ${req.originalUrl};\n Query params: ${req.params};\n Body: ${req.body}`
+    `\nURL: ${req.originalUrl};\nQuery params: ${req.params};\nBody: ${req.body}`
   );
   if (req.originalUrl === '/') {
     res.send('Service is running!');
