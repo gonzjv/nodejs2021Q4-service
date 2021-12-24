@@ -12,6 +12,7 @@ class Logger {
   info(req: express.Request, res: express.Response) {
     this.logger.info(
       getLogMessage(
+        req.method,
         req.originalUrl,
         req.params,
         req.body,

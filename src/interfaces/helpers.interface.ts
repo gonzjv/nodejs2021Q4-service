@@ -2,6 +2,7 @@
 
 interface IGetlogMessage {
   (
+    method: string,
     url: string,
     queryParams: { [key: string]: string },
     body: object,

@@ -33,6 +33,7 @@ router.route('/:userId').get(async (req, res) => {
 
 router.route('/').post(async (req, res) => {
   const user = await userService.create(User.fromRequest(req.body));
+  logger.info(req, res);
   res.status(201).send(User.toResponse(user));
 });
 
@@ -41,6 +42,7 @@ router.route('/:userId').put(async (req, res) => {
     req.params.userId,
     User.fromRequest(req.body)
   );
+  logger.info(req, res);
   res.status(200).send(User.toResponse(user));
 });
 
