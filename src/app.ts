@@ -19,7 +19,9 @@ app.use(pino());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use('/', (req, res, next): undefined | void => {
   req.log.info(
-    `\nURL: ${req.originalUrl};\nQuery params: ${req.params};\nBody: ${req.body}`
+    `\nURL: ${req.originalUrl};\nQuery params: ${JSON.stringify(
+      req.params
+    )};\nBody: ${JSON.stringify(req.body)}`
   );
   if (req.originalUrl === '/') {
     res.send('Service is running!');
