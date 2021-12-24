@@ -48,6 +48,7 @@ router.route('/:userId').put(async (req, res) => {
 
 router.route('/:userId').delete(async (req, res) => {
   await userService.kick(req.params.userId);
+  logger.info(req, res);
   res.sendStatus(200);
 });
 
