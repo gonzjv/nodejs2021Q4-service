@@ -20,6 +20,18 @@ class Logger {
       )
     );
   }
+
+  error(req: express.Request, res: express.Response) {
+    this.logger.error(
+      getLogMessage(
+        req.method,
+        req.originalUrl,
+        req.params,
+        req.body,
+        res.statusCode
+      )
+    );
+  }
 }
 
 export default Logger;

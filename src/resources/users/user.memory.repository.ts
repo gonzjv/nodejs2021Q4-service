@@ -17,7 +17,9 @@ const getAll = async () => users;
  * @param userID - ID of user
  * @returns object with user data
  */
-const getUserByID = async (userID: string): Promise<Required<IUser>> => {
+const getUserByID = async (
+  userID: string
+): Promise<Required<IUser>> => {
   const user = users.find((elem) => elem.id === userID);
   if (!user) {
     throw new UserError('User does not exist');
@@ -65,7 +67,11 @@ const kick = async (userId: string) => {
       if (task.userId === userToDelete.id) {
         const unAssignedTask = task;
         unAssignedTask.userId = null;
-        await taskService.update(task.id, task.boardId, unAssignedTask);
+        await taskService.update(
+          task.id,
+          task.boardId,
+          unAssignedTask
+        );
       }
     });
   }

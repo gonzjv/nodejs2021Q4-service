@@ -1,6 +1,4 @@
 import { Router } from 'express';
-import handleUserError from '../../error-handlers/handle-user-error';
-import UserError from '../../error-handlers/user-error';
 import Logger from '../../logger/logger';
 import User from './user.model';
 import * as userService from './user.service';
@@ -14,16 +12,13 @@ router.route('/').get(async (req, res) => {
   res.status(200).send(users.map(User.toResponse));
 });
 
-router.route('/:userId').get(async (req, res) => {
+router.route('/:userId').get(async (req, res, next) => {
   let user;
   try {
     user = await userService.getUserByID(req.params.userId);
+    next();
   } catch (error: unknown) {
-    if (error instanceof UserError) {
-      handleUserError(error);
-    } else {
-      throw error;
-    }
+    next(error);
   }
   if (user) {
     logger.info(req, res);
