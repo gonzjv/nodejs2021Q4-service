@@ -2,6 +2,7 @@ import { IBoard } from '../../interfaces/board.interface';
 import { boards, tasks } from '../in-memory-db';
 import Board from './board.model';
 import * as taskService from '../tasks/task.service';
+import UserError from '../../error-handlers/user-error';
 
 /**
  * Returns all boards from database
@@ -16,7 +17,15 @@ const getAll = async () => boards;
  * @param id - ID of board
  * @returns object with board data
  */
-const getByID = async (id: string) => boards.find((elem) => elem.id === id);
+const getByID = async (id: string) => {
+  const board = boards.find((elem) => elem.id === id);
+  if (!board) {
+    throw new UserError(
+      'Ho, ho, ho, merry Christmas and happy New Year! Friend, board with this ID is not exist.'
+    );
+  }
+  return board;
+};
 
 /**
  * Add new board to database
@@ -59,6 +68,7 @@ const kick = async (id: string) => {
       return null;
     });
   }
+  return elemToDelete;
 };
 
 export { getAll, getByID, create, update, kick };

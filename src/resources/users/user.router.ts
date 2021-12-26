@@ -16,7 +16,6 @@ router.route('/:userId').get(async (req, res, next) => {
   let user;
   try {
     user = await userService.getUserByID(req.params.userId);
-    next();
   } catch (error: unknown) {
     next(error);
   }
@@ -56,7 +55,6 @@ router.route('/:userId').delete(async (req, res, next) => {
     next(error);
   }
   if (userToDelete) {
-    console.log('del flag');
     logger.info(req, res);
     res.sendStatus(200);
   }

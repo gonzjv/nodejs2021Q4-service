@@ -12,13 +12,16 @@ router.route('/').get(async (req, res) => {
   res.status(200).send(boards.map(Board.toResponse));
 });
 
-router.route('/:id').get(async (req, res) => {
-  logger.info(req, res);
-  const board = await boardService.getByID(req.params.id);
+router.route('/:id').get(async (req, res, next) => {
+  let board;
+  try {
+    board = await boardService.getByID(req.params.id);
+  } catch (error) {
+    next(error);
+  }
   if (board) {
+    logger.info(req, res);
     res.status(200).send(Board.toResponse(board));
-  } else {
-    res.status(404).send('Board not found');
   }
 });
 
@@ -30,21 +33,33 @@ router.route('/').post(async (req, res) => {
   res.status(201).send(Board.toResponse(board));
 });
 
-router.route('/:id').put(async (req, res) => {
-  logger.info(req, res);
-  const board = await boardService.update(
-    req.params.id,
-    Board.fromRequest(req.body)
-  );
+router.route('/:id').put(async (req, res, next) => {
+  let board;
+  try {
+    board = await boardService.update(
+      req.params.id,
+      Board.fromRequest(req.body)
+    );
+  } catch (error) {
+    next(error);
+  }
   if (board) {
+    logger.info(req, res);
     res.status(200).send(Board.toResponse(board));
   }
 });
 
-router.route('/:id').delete(async (req, res) => {
-  logger.info(req, res);
-  await boardService.kick(req.params.id);
-  res.sendStatus(200);
+router.route('/:id').delete(async (req, res, next) => {
+  let boardToDelete;
+  try {
+    boardToDelete = await boardService.kick(req.params.id);
+  } catch (error) {
+    next(error);
+  }
+  if (boardToDelete) {
+    logger.info(req, res);
+    res.sendStatus(200);
+  }
 });
 
 export { router as boardRouter };
