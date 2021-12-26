@@ -3,7 +3,6 @@ import IError from '../interfaces/error.interface';
 import Logger from '../logger/logger';
 import UserError from './user-error';
 
-const { stderr } = process;
 const logger = new Logger();
 
 const handleUserError = (
@@ -13,8 +12,7 @@ const handleUserError = (
   next: express.NextFunction
 ) => {
   if (err instanceof UserError) {
-    res.status(404).send('user is not exist');
-    stderr.write(`___________user is not exist`);
+    res.status(404).send(err.message);
     logger.error(req, res);
     next();
   } else {

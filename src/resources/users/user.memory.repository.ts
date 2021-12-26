@@ -22,7 +22,7 @@ const getUserByID = async (
 ): Promise<Required<IUser>> => {
   const user = users.find((elem) => elem.id === userID);
   if (!user) {
-    throw new UserError('User does not exist');
+    throw new UserError('Hey, bro! User with this ID is not exist');
   }
   return user;
 };
@@ -46,10 +46,7 @@ const create = async (user: Required<IUser>) => {
  */
 const update = async (id: string, user: IUser) => {
   const oldUser = await getUserByID(id);
-  if (oldUser) {
-    users[users.indexOf(oldUser)] = User.toPut(id, user);
-  }
-
+  users[users.indexOf(oldUser)] = User.toPut(id, user);
   return getUserByID(id);
 };
 
@@ -60,6 +57,7 @@ const update = async (id: string, user: IUser) => {
  */
 const kick = async (userId: string) => {
   const userToDelete = await getUserByID(userId);
+
   if (userToDelete) {
     const index = users.indexOf(userToDelete);
     users.splice(index, 1);
@@ -75,6 +73,7 @@ const kick = async (userId: string) => {
       }
     });
   }
+  return userToDelete;
 };
 
 export { getAll, getUserByID, create, update, kick };

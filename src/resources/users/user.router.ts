@@ -32,19 +32,34 @@ router.route('/').post(async (req, res) => {
   res.status(201).send(User.toResponse(user));
 });
 
-router.route('/:userId').put(async (req, res) => {
-  const user = await userService.update(
-    req.params.userId,
-    User.fromRequest(req.body)
-  );
-  logger.info(req, res);
-  res.status(200).send(User.toResponse(user));
+router.route('/:userId').put(async (req, res, next) => {
+  let user;
+  try {
+    user = await userService.update(
+      req.params.userId,
+      User.fromRequest(req.body)
+    );
+  } catch (error: unknown) {
+    next(error);
+  }
+  if (user) {
+    logger.info(req, res);
+    res.status(200).send(User.toResponse(user));
+  }
 });
 
-router.route('/:userId').delete(async (req, res) => {
-  await userService.kick(req.params.userId);
-  logger.info(req, res);
-  res.sendStatus(200);
+router.route('/:userId').delete(async (req, res, next) => {
+  let userToDelete;
+  try {
+    userToDelete = await userService.kick(req.params.userId);
+  } catch (error) {
+    next(error);
+  }
+  if (userToDelete) {
+    console.log('del flag');
+    logger.info(req, res);
+    res.sendStatus(200);
+  }
 });
 
 export { router as usersRouter };
