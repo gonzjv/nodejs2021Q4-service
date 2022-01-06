@@ -8,7 +8,13 @@
 ## Downloading
 
 ```
-git clone {repository URL}
+git clone https://github.com/gonzjv/nodejs2021Q4-service.git
+```
+
+## Checkout to branch
+
+```
+git checkout feature/typescript-migrate
 ```
 
 ## Installing NPM modules
@@ -21,6 +27,12 @@ npm install
 
 ```
 npm start
+```
+
+or
+
+```
+npm run dev
 ```
 
 After starting the app on port (4000 as default) you can open
@@ -54,19 +66,3 @@ To run only specific test suite with authorization (users, boards or tasks)
 ```
 npm run test:auth <suite name>
 ```
-
-## Development
-
-If you're using VSCode, you can get a better developer experience from integration with [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
-
-### Auto-fix and format
-
-```
-npm run lint
-```
-
-### Debugging in VSCode
-
-Press <kbd>F5</kbd> to debug.
-
-For more information, visit: https://code.visualstudio.com/docs/editor/debugging

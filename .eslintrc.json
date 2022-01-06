@@ -6,7 +6,11 @@
     "jest": true,
     "node": true
   },
+
+  "parser": "@typescript-eslint/parser",
+
   "parserOptions": {
+    "project": "./tsconfig.json",
     "sourceType": "module",
     "ecmaVersion": 2021,
     "ecmaFeatures": {
@@ -14,12 +18,23 @@
     }
   },
   "settings": {
-    "noInlineConfig": true
+    "noInlineConfig": true,
+    // "import/resolver": {
+    //   "node": {
+    //     "extensions": [".js", ".ts"]
+    //   }
+    // },
+    "node": {
+      // "resolvePaths": ["__dirname"],
+      "tryExtensions": [".js", ".ts"]
+    }
   },
+  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
   "extends": [
     "eslint:recommended",
     "plugin:node/recommended",
     "airbnb-base",
+    "airbnb-typescript/base",
     "prettier"
   ],
   "rules": {
@@ -27,6 +42,8 @@
     "linebreak-style": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "no-underscore-dangle": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "tsdoc/syntax": "error",
+    "@typescript-eslint/no-explicit-any": ["error"]
   }
 }
