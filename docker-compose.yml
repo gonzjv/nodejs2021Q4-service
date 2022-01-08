@@ -8,9 +8,16 @@ services:
       - postgres
     environment:
       - PORT=4000
+    networks:
+      - custom_net
   postgres:
     build: ./database
     ports:
       - '5000:5000'
     environment:
       POSTGRES_PASSWORD: 'password'
+    networks:
+      - custom_net
+networks:
+  custom_net:
+    driver: bridge
