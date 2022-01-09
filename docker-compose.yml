@@ -27,6 +27,10 @@ services:
       POSTGRES_PASSWORD: 'password'
     networks:
       - custom_net
+    volumes:
+      - db_data:/usr/docker_app
 networks:
   custom_net:
     driver: bridge
+volumes:
+  db_data:
