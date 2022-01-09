@@ -10,6 +10,15 @@ services:
       - PORT=4000
     networks:
       - custom_net
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 3s
+    # command: nodemon
+    volumes:
+      - type: bind
+        source: ./src
+        target: /download/docker_app/src
   postgres:
     build: ./database
     ports:
