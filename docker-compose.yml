@@ -13,7 +13,7 @@ services:
     deploy:
       restart_policy:
         condition: any
-        delay: 3s
+        # delay: 3s
     # command: nodemon
     volumes:
       - type: bind

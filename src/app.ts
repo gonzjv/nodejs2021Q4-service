@@ -39,3 +39,6 @@ app.use(handleUserError);
 app.listen(PORT, () => {
   stdout.write(`App is running on http://localhost:${PORT} \n`);
 });
+
+// check is container restart when error appeared
+// throw new Error('wohoho..error is here!');
