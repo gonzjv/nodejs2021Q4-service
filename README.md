@@ -1,4 +1,4 @@
-# RS School REST service
+# RS node 2021Q4 Docker Basics
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ git clone https://github.com/gonzjv/nodejs2021Q4-service.git
 ## Checkout to branch
 
 ```
-git checkout feature/typescript-migrate
+git checkout feature/docker-basics
 ```
 
 ## Installing NPM modules
@@ -23,21 +23,13 @@ git checkout feature/typescript-migrate
 npm install
 ```
 
-## Running application
+## Run node and postgreSQL containers with docker-compose
 
 ```
-npm start
+docker-compose up
 ```
 
-or
-
-```
-npm run dev
-```
-
-After starting the app on port (4000 as default) you can open
-in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
-For more information about OpenAPI/Swagger please visit https://swagger.io/.
+After docker-compose build images and run it in containers you can open in your browser OpenAPI documentation by typing http://localhost:4000/doc/.
 
 ## Testing
 
