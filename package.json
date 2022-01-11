@@ -52,6 +52,7 @@
     "pino": "^7.6.0",
     "pino-http": "^6.5.0",
     "swagger-ui-express": "4.1.6",
+    "typeorm": "^0.2.41",
     "uuid": "8.3.2",
     "yamljs": "0.3.0"
   },
