@@ -1,15 +1,23 @@
+import { getRepository } from 'typeorm';
 import { IUser } from '../../interfaces/user.interface';
 import UserError from '../../error-handlers/user-error';
 import { tasks, users } from '../in-memory-db';
 import User from './user.model';
 import * as taskService from '../tasks/task.service';
+import { Users } from '../../entity/Users';
 
 /**
  * Returns all users from database.
  *
  * @returns all user from database
  */
-const getAll = async () => users;
+const getAll = async () => {
+  const usersRepo = getRepository(Users);
+  const allUsers = await usersRepo.find({
+    take: 10,
+  });
+  return allUsers;
+};
 
 /**
  * Returns user by ID
@@ -34,7 +42,8 @@ const getUserByID = async (
  *
  */
 const create = async (user: Required<IUser>) => {
-  users.push(user);
+  // users.push(user);
+  await getRepository(Users).save(user);
 };
 
 /**
