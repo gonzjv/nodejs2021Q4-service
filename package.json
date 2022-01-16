@@ -9,7 +9,7 @@
   "description": "REST service starter for RS School",
   "main": "src/app.ts",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "nodemon --exitcrash",
     "build": "tsc src/app.ts",
     "start": "ts-node src/app.ts",
     "lint": "eslint --ext .js,.ts --fix src/",

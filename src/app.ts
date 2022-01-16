@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import YAML from 'yamljs';
 import swaggerUI from 'swagger-ui-express';
-import pino from 'pino-http';
+// import pino from 'pino-http';
 import { stdout } from 'process';
 import { usersRouter } from './resources/users/user.router';
 import { PORT } from './common/config';
@@ -16,14 +16,14 @@ const swaggerDocument = YAML.load(
 );
 
 app.use(express.json());
-app.use(pino());
+// app.use(pino());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use('/', (req, res, next): undefined | void => {
-  req.log.info(
-    `\nURL: ${req.originalUrl};\nQuery params: ${JSON.stringify(
-      req.params
-    )};\nBody: ${JSON.stringify(req.body)}`
-  );
+  // req.log.info(
+  //   `\nURL: ${req.originalUrl};\nQuery params: ${JSON.stringify(
+  //     req.params
+  //   )};\nBody: ${JSON.stringify(req.body)}`
+  // );
   if (req.originalUrl === '/') {
     res.send('Service is running!');
     return;
@@ -39,3 +39,6 @@ app.use(handleUserError);
 app.listen(PORT, () => {
   stdout.write(`App is running on http://localhost:${PORT} \n`);
 });
+
+// check is container restart when error appeared
+// throw new Error('wohoho..error is here!');

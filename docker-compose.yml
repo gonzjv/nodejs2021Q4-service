@@ -1,0 +1,36 @@
+# version: '1.29.2'
+services:
+  node:
+    build: .
+    ports:
+      - '4000:4000'
+    depends_on:
+      - postgres
+    environment:
+      - PORT=4000
+    networks:
+      - custom_net
+    deploy:
+      restart_policy:
+        condition: any
+        # delay: 3s
+    # command: nodemon
+    volumes:
+      - type: bind
+        source: ./src
+        target: /download/docker_app/src
+  postgres:
+    build: ./database
+    ports:
+      - '5000:5000'
+    environment:
+      POSTGRES_PASSWORD: 'password'
+    networks:
+      - custom_net
+    volumes:
+      - db_data:/usr/docker_app
+networks:
+  custom_net:
+    driver: bridge
+volumes:
+  db_data:
