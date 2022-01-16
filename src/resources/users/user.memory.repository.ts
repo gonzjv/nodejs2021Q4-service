@@ -28,11 +28,14 @@ const getAll = async () => {
 const getUserByID = async (
   userID: string
 ): Promise<Required<IUser>> => {
-  const user = users.find((elem) => elem.id === userID);
+  // const user = users.find((elem) => elem.id === userID);
+  const usersRepo = getRepository(Users);
+  const user = usersRepo.findOneOrFail({ where: { id: userID } });
   if (!user) {
     throw new UserError('Hey, bro! User with this ID is not exist');
+  } else {
+    return user;
   }
-  return user;
 };
 
 /**
@@ -43,7 +46,8 @@ const getUserByID = async (
  */
 const create = async (user: Required<IUser>) => {
   // users.push(user);
-  await getRepository(Users).save(user);
+  const usersRepo = getRepository(Users);
+  await usersRepo.save(user);
 };
 
 /**
