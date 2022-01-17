@@ -1,9 +1,9 @@
 import { getConnection, getRepository } from 'typeorm';
 import { IUser } from '../../interfaces/user.interface';
 import UserError from '../../error-handlers/user-error';
-import { tasks, users } from '../in-memory-db';
+// import { tasks, users } from '../in-memory-db';
 // import User from './user.model';
-import * as taskService from '../tasks/task.service';
+// import * as taskService from '../tasks/task.service';
 import { Users } from '../../entity/Users';
 
 /**
@@ -84,19 +84,25 @@ const kick = async (userId: string) => {
   const userToDelete = await getUserByID(userId);
 
   if (userToDelete) {
-    const index = users.indexOf(userToDelete);
-    users.splice(index, 1);
-    tasks.map(async (task) => {
-      if (task.userId === userToDelete.id) {
-        const unAssignedTask = task;
-        unAssignedTask.userId = null;
-        await taskService.update(
-          task.id,
-          task.boardId,
-          unAssignedTask
-        );
-      }
-    });
+    // const index = users.indexOf(userToDelete);
+    // users.splice(index, 1);
+    await getConnection()
+      .createQueryBuilder()
+      .delete()
+      .from(Users)
+      .where('id = :id', { id: userId })
+      .execute();
+    // tasks.map(async (task) => {
+    //   if (task.userId === userToDelete.id) {
+    //     const unAssignedTask = task;
+    //     unAssignedTask.userId = null;
+    //     await taskService.update(
+    //       task.id,
+    //       task.boardId,
+    //       unAssignedTask
+    //     );
+    //   }
+    // });
   }
   return userToDelete;
 };
