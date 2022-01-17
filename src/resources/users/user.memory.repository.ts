@@ -1,8 +1,8 @@
-import { getRepository } from 'typeorm';
+import { getConnection, getRepository } from 'typeorm';
 import { IUser } from '../../interfaces/user.interface';
 import UserError from '../../error-handlers/user-error';
 import { tasks, users } from '../in-memory-db';
-import User from './user.model';
+// import User from './user.model';
 import * as taskService from '../tasks/task.service';
 import { Users } from '../../entity/Users';
 
@@ -57,10 +57,22 @@ const create = async (user: Required<IUser>) => {
  * @param user - object with user data
  * @returns object with updated user data
  */
-const update = async (id: string, user: IUser) => {
-  const oldUser = await getUserByID(id);
-  users[users.indexOf(oldUser)] = User.toPut(id, user);
-  return getUserByID(id);
+const update = async (userId: string, user: IUser) => {
+  // const oldUser = await getUserByID(id);
+  // users[users.indexOf(oldUser)] = User.toPut(id, user);
+  // return getUserByID(id);
+  await getConnection()
+    .createQueryBuilder()
+    .update(Users)
+    .set({
+      id: userId,
+      name: user.name,
+      login: user.login,
+      password: user.password,
+    })
+    .where('id = :id', { id: userId })
+    .execute();
+  return getUserByID(userId);
 };
 
 /**
