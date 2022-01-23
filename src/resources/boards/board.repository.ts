@@ -1,8 +1,11 @@
+import { getRepository } from 'typeorm';
 import { IBoard } from '../../interfaces/board.interface';
 import { boards, tasks } from '../in-memory-db';
 import Board from './board.model';
 import * as taskService from '../tasks/task.service';
 import UserError from '../../error-handlers/user-error';
+import { Boards } from '../../entity/Boards';
+// import { BoardColumns } from '../../entity/Board-column';
 
 /**
  * Returns all boards from database
@@ -32,7 +35,13 @@ const getByID = async (id: string) => {
  * @param board - object with board data
  */
 const create = async (board: Required<IBoard>) => {
-  boards.push(board);
+  const boardsRepo = getRepository(Boards);
+  const newBoard = Board.toCreate(board);
+  await boardsRepo.save(newBoard);
+
+  // const columnsRepo = getRepository(BoardColumns);
+  // await columnsRepo.save(Board.columnsToCreate(board));
+  // boards.push(board);
 };
 
 /**

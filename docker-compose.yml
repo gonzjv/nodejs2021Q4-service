@@ -41,7 +41,7 @@ services:
     networks:
       - custom_net
     volumes:
-      - db_data:/usr/docker_app
+      - db_data:/var/lib/postgresql/data
 networks:
   custom_net:
     driver: bridge

@@ -1,5 +1,5 @@
 import { IBoard } from '../../interfaces/board.interface';
-import * as boardsRepo from './board.memory.repository';
+import * as boardsRepo from './board.repository';
 
 const getAll = () => boardsRepo.getAll();
 
@@ -10,7 +10,8 @@ const create = (elem: Required<IBoard>) => {
   return elem;
 };
 
-const update = (id: string, elem: IBoard) => boardsRepo.update(id, elem);
+const update = (id: string, elem: IBoard) =>
+  boardsRepo.update(id, elem);
 
 const kick = (id: string) => boardsRepo.kick(id);
 

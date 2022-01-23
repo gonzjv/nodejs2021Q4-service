@@ -11,7 +11,7 @@ class Board implements IBoard {
   constructor({
     id = uuidv4(),
     title = 'BOARD',
-    columns = [{ id: '1', title: 'nodejs', order: 3 }],
+    columns = [{ id: uuidv4(), title: 'nodejs', order: 3 }],
   } = {}) {
     this.id = id;
     this.title = title;
@@ -30,6 +30,20 @@ class Board implements IBoard {
   static toPut(id: string, board: IBoard) {
     const { title, columns } = board;
     return { id, title, columns };
+  }
+
+  static toCreate(board: IBoard) {
+    const { id, title } = board;
+    return { id, title };
+  }
+
+  static columnsToCreate(board: IBoard) {
+    const columns = board.columns.map((col) => ({
+      ...col,
+      boardId: board.id,
+    }));
+    console.log('columns: ', columns);
+    return columns;
   }
 }
 

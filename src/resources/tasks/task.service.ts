@@ -1,5 +1,5 @@
 import { ITask } from '../../interfaces/task.interface';
-import * as tasksRepo from './task.memory.repository';
+import * as tasksRepo from './task.repository';
 
 const getAll = (boardId: string) => tasksRepo.getAll(boardId);
 
@@ -14,6 +14,7 @@ const create = async (elem: Required<ITask>) => {
 const update = (id: string, boardId: string, elem: ITask) =>
   tasksRepo.update(id, boardId, elem);
 
-const kick = (id: string, boardId: string) => tasksRepo.kick(id, boardId);
+const kick = (id: string, boardId: string) =>
+  tasksRepo.kick(id, boardId);
 
 export { getAll, create, getByID, update, kick };
