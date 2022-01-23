@@ -1,5 +1,5 @@
 import { IUser } from '../../interfaces/user.interface';
-import * as usersRepo from './user.memory.repository';
+import * as usersRepo from './user.repository';
 
 const getAll = () => usersRepo.getAll();
 
@@ -10,7 +10,8 @@ const create = (user: Required<IUser>) => {
   return user;
 };
 
-const update = (userId: string, user: IUser) => usersRepo.update(userId, user);
+const update = (userId: string, user: IUser) =>
+  usersRepo.update(userId, user);
 
 const kick = (userId: string) => usersRepo.kick(userId);
 

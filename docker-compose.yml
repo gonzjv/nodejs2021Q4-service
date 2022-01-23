@@ -1,13 +1,17 @@
 # version: '1.29.2'
 services:
   node:
+    container_name: trshkv_node_container
     build: .
     ports:
-      - '4000:4000'
+      # - ${PORT_NODE_HOST}:${PORT_NODE_CONTAINER}
+      - 4000:4000
     depends_on:
       - postgres
+    # links:
+    #   - postgres
     environment:
-      - PORT=4000
+      PORT: 4000
     networks:
       - custom_net
     deploy:
@@ -20,15 +24,24 @@ services:
         source: ./src
         target: /download/docker_app/src
   postgres:
+    container_name: trshkv_pg_container
     build: ./database
+    image: 'postgres'
+    restart: always
     ports:
-      - '5000:5000'
+      # - ${PORT_POSTGRES_HOST}:${PORT_POSTGRES_CONTAINER}
+      - 5432:5432
     environment:
-      POSTGRES_PASSWORD: 'password'
+      POSTGRES_USER: 'test'
+      POSTGRES_PASSWORD: 'test'
+      POSTGRES_DB: 'test'
+      # POSTGRES_USER: ${POSTGRES_USER}
+      # POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      # POSTGRES_DB: ${POSTGRES_DB}
     networks:
       - custom_net
     volumes:
-      - db_data:/usr/docker_app
+      - db_data:/var/lib/postgresql/data
 networks:
   custom_net:
     driver: bridge
